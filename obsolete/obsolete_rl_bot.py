@@ -10,7 +10,7 @@ actions = {
 class Bot(object):
     def __init__(self):
         self.games_played = 0
-        self.discount = 0.90
+        self.discount = 0
         self.reward = {0: 1000, 1: -1000}
         self.alpha = 0.7
         self.last_state = None
@@ -18,7 +18,7 @@ class Bot(object):
         self.q_values = self.load_q_values()
         self.actions = [actions['IDLE'], actions['UP'], actions['DOWN'],]
         self.init_state = [0] * (len(self.actions))
-        self.exploration_prob = 20
+        self.exploration_prob = 10
         self.action_cooldown = 0
         self.scores_per_game=[]
         self.rewarding_enabled = True
@@ -91,7 +91,7 @@ class Bot(object):
     def get_best_action(self, state):
 
         exp_val = self.get_exploration_val()
-        epsilon = (random.randint(1, 100) + self.games_played/2) < exp_val #Not so much needed anymore
+        epsilon = random.randint(0, 100) < exp_val #Not so much needed anymore
 
         if epsilon:
             action = random.choice([0, 1, 2])

@@ -20,6 +20,6 @@ class TrainingWarning():
         deep_q_learning_training = self.midi_font.render("Deep Q-Learning" if self.deep_q_learning else "", True, "red")
         screen.blit(deep_q_learning_training, (width * 0.31, height * 0.12))
 
-    def update(self, q_learning, deep_q_learning):
+    def update(self, q_learning, deep_q_learning = False):
         self.q_learning = q_learning
         self.deep_q_learning = deep_q_learning
